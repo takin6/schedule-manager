@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+html, body {
+  height: 100%;
+  font-family: ‘Open Sans’, sans-serif;
+  font-weight: bold;
+}
+
+body {
+  margin: 0;
+}
+
+.clearfix:after { /*floatの解除、ここがポイント*/
+  display:block;
+  clear:both;
+  height:0px;
+  visibility:hidden;
+  content:".";
+}
+
+.clearfix {
+  height: 1px;
+}
+
