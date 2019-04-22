@@ -31,7 +31,7 @@ export const Header = {
 
 export const HeaderTitle = {
   fontWeight: "bold",
-  fontSize: 30,
+  fontSize: 25,
   display: "inline",
   verticalAlign: "middle"
 };
@@ -40,5 +40,5 @@ export const HeaderSubtitle = {
   display: "inline",
   color: "#C1C2D3",
   marginLeft: 15,
-  fontSize: 15
+  fontSize: 10
 };

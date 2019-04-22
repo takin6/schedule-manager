@@ -41,9 +41,13 @@
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "humps": "^2.0.1",
     "hypernova": "^2.5.0",
     "hypernova-react": "^2.1.0",
     "immutable": "3.8.2",
+    "isomorphic-fetch": "^2.2.1",
+    "normalizr": "^3.3.0",
+    "normalizr-immutable": "0.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -51,6 +55,7 @@
     "react-transition-group": "^2.6.0",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
-    "redux-logger": "3.0.6"
+    "redux-logger": "3.0.6",
+    "redux-thunk": "^2.3.0"
   }
 }

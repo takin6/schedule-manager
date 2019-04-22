@@ -27,12 +27,18 @@ export class MainComponent extends React.Component {
             <div>
               <p style={Styles.HeaderTitle}>Today</p>
               <p style={Styles.HeaderSubtitle}>{date}</p>
+              <button>Add</button>
             </div>
             <TodoCardsComponent todos={todos} />
           </div>
           <div style={Styles.Others}>
             <div>
               <p style={Styles.HeaderTitle}>Tomorrow</p>
+              <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
+            </div>
+            <OtherTodoCardsComponent todos={todos} />
+            <div>
+              <p style={Styles.HeaderTitle}>Day after Tomorrow</p>
               <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
             </div>
             <OtherTodoCardsComponent todos={todos} />

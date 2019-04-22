@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { MainComponent } from '../../../components/todos/MainComponent';
-import { incrementCount, decrementCount } from '../../../actions/Todos';
+import { addTodo } from '../../../actions/Todos';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,19 +9,36 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     actions: bindActionCreators(
       {
-        incrementCount,
-        decrementCount,
+        onAddTodo: todo => {
+          return dispatch(addTodo(todo));
+        }
       },
-      dispatch,
-    ),
+      dispatch
+    )
+    // onAddTodo: todo => {
+    //   dispatch(addTodo(todo));
+    // }
   };
 };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     actions: bindActionCreators(
+//       {
+//         incrementCount,
+//         decrementCount,
+//       },
+//       dispatch,
+//     ),
+//   };
+// };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(MainComponent);
+

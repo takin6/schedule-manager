@@ -1,12 +1,15 @@
 import { reducers } from "../reducers/";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { createLogger } from "redux-logger";
+import thunk from "redux-thunk";
+// import api from "../middleware/Api";
 
 export function configureStore(initialState = {}) {
   const store = createStore(
     combineReducers({ ...reducers }),
     initialState,
     applyMiddleware(
+      thunk,
       createLogger()
     )
   );

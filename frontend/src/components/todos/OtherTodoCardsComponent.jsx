@@ -34,14 +34,8 @@ export class OtherTodoCardsComponent extends React.Component {
         <ul style={Styles.ContentBlock}>
           <li className="clearfix" style={Styles.Card}>
             <div style={Styles.CardHeader}></div>
-            <div style={Styles.CardDuetime}>17:00 am</div>
+            <div style={Styles.CardDuetime}>17:00 pm</div>
             <div style={Styles.Title}>Write Paper</div>
-          </li>
-          <li style={Styles.Card}>
-            aaa
-          </li>
-          <li style={Styles.Card}>
-            aaa
           </li>
         </ul>
       </div>

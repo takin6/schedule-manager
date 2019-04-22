@@ -4,19 +4,20 @@ export const Block = {
 
 export const ContentBlock = {
   backgroundColor: "white",
-  width: 400,
-  border: "2px solid lightblue",
+  width: 350,
+  borderRadius: "3%",
   marginBottom: 30,
   float: "left",
   listStyleType: "none",
   marginBlockStart: "0em",
-  paddingInlineStart: 0
+  paddingInlineStart: 0,
+  padding: 15
 };
 
 
 export const Card = {
   height: 30,
-  borderBottom: "2px solid lightblue"
+  borderBottom: "2px solid #C1C2D3",
 };
 
 export const CardHeader = {
