@@ -11,17 +11,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    actions: bindActionCreators(
-      {
-        onAddTodo: todo => {
-          return dispatch(addTodo(todo));
-        }
-      },
-      dispatch
-    )
-    // onAddTodo: todo => {
-    //   dispatch(addTodo(todo));
-    // }
+    actions: bindActionCreators({
+      addTodo
+    }, dispatch)
   };
 };
 

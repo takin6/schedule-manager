@@ -1,4 +1,4 @@
-import * as types from '../constants/TodoActionTypes';
+import * as types from '../constants/ActionTypes';
 
 const INITIAL_STATE = {
   loading: false,

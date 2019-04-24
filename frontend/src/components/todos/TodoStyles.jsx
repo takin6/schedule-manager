@@ -42,3 +42,14 @@ export const HeaderSubtitle = {
   marginLeft: 15,
   fontSize: 10
 };
+
+// export const ModalContent = {
+//   top: '50%',
+//   left: '50%',
+//   right: 'auto',
+//   bottom: 'auto',
+//   marginRight: '-50%',
+//   transform: 'translate(-50%, -50%)',
+//   align: 'center',
+//   width: 500,
+// };

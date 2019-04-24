@@ -1,17 +1,23 @@
 import * as React from 'react';
-import { decrementCount, incrementCount } from '../../actions/Todos';
+// import { addTodo } from '../../actions/Todos';
 import { Header } from '../Header/MainComponent';
 import { Sidebar } from '../Sidebar/MainComponent';
 import { TodoCardsComponent } from './TodoCardsComponent';
 import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
+import { AddTodoFormComponent } from './Forms/AddTodoFormComponent';
 import * as Styles from './TodoStyles';
 
 export class MainComponent extends React.Component {
-  onIncrementClick() {
-    incrementCount(1);
-  }
-  onDecrementClick() {
-    decrementCount(1);
+  // onIncrementClick() {
+  //   incrementCount(1);
+  // }
+  // onDecrementClick() {
+  //   decrementCount(1);
+  // }
+
+  onAddTodoClick(e) {
+    debugger;
+    this.actions.addTodo(e.title, e.time);
   }
 
   render() {
@@ -27,8 +33,8 @@ export class MainComponent extends React.Component {
             <div>
               <p style={Styles.HeaderTitle}>Today</p>
               <p style={Styles.HeaderSubtitle}>{date}</p>
-              <button>Add</button>
             </div>
+            <AddTodoFormComponent addTodo={this.actions.addTodo}/>
             <TodoCardsComponent todos={todos} />
           </div>
           <div style={Styles.Others}>
