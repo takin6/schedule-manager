@@ -4,17 +4,17 @@ if (!global._babelPolyfill) {
 import * as React from 'react';
 import { Provider } from "react-redux";
 import { AppContainer } from 'react-hot-loader';
-import MainContainer from '../../containers/Todo/Index/MainContainer';
+import MainContainer from '../../containers/Todos/Index/MainContainer';
 import PropTypes from 'prop-types';
 
 export class TodoComponent extends React.Component {
   render() {
     return (
-      <AppContainer>
-        <Provider store={this.props.store}>
+      <Provider store={this.props.store}>
+        <AppContainer>
           <MainContainer />
-        </Provider>
-      </AppContainer>
+        </AppContainer>
+      </Provider>
     );
   }
 }

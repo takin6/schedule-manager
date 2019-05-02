@@ -1,6 +1,6 @@
 import { reducers } from "../reducers/";
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { createLogger } from "redux-logger";
+import { logger } from "redux-logger";
 import thunk from "redux-thunk";
 // import api from "../middleware/Api";
 
@@ -10,7 +10,7 @@ export function configureStore(initialState = {}) {
     initialState,
     applyMiddleware(
       thunk,
-      createLogger()
+      logger
     )
   );
 

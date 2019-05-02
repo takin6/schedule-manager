@@ -9,7 +9,10 @@ module Api
 
     def create
       params = create_params
-      if @todo = Todo.create!(title: params[:title], due_day: params[:due_day])
+
+      formattedTime = DateTime.parse(params[:due_day])
+
+      if @todo = Todo.create!(title: params[:title], due_day: formattedTime)
         render 'show', formats: 'json'
       else
         render json: { errors: ["something happened"] }, status: :unprocessable_entity

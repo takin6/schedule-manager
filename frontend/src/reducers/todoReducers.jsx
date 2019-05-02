@@ -6,34 +6,38 @@ const INITIAL_STATE = {
   error: null
 };
 
-function setState(state, payload) {
-  return { todos: payload };
-}
-
 export function todoReducers(state = INITIAL_STATE, action) {
   switch(action.type) {
     case types.INIT_TODOS:
-      return setState(state, action.todos);
-    case types.ADD_TODO_STARTED:
+      return {
+        ...state,
+        todos: action.payload.todos
+      };
+    case types.HANDLE_ADDING_MODE:
+      return {
+        ...state,
+        addingMode: state.addingMode && state.addingMode === true ? false : true 
+      };
+    case types.ENTITIES_REQUEST:
       return {
         ...state,
         loading: true
       };
-    case types.ADD_TODO_SUCCESS:
+    case types.ENTITIES_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
         todos: [...state.todos, action.payload]
       };
-    case types.ADD_TODO_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload.error
-      };
     default:
       return state;
   }
 }
 
+// case types.ADD_TODO_FAILURE:
+//   return {
+//     ...state,
+//     loading: false,
+//     error: action.payload.error
+//   };

@@ -1,27 +1,36 @@
 import * as React from 'react';
-// import { addTodo } from '../../actions/Todos';
 import { Header } from '../Header/MainComponent';
 import { Sidebar } from '../Sidebar/MainComponent';
 import { TodoCardsComponent } from './TodoCardsComponent';
 import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
-import { AddTodoFormComponent } from './Forms/AddTodoFormComponent';
+import CreateFormComponent from './forms/CreateFormComponent';
 import * as Styles from './TodoStyles';
 
 export class MainComponent extends React.Component {
-  // onIncrementClick() {
-  //   incrementCount(1);
-  // }
-  // onDecrementClick() {
-  //   decrementCount(1);
-  // }
+  constructor(props) {
+    super(props);
 
-  onAddTodoClick(e) {
-    debugger;
-    this.actions.addTodo(e.title, e.time);
+    this.submitData = this.submitData.bind(this);
+  }
+
+  submitData(values) {
+    let formattedDate = new Date();
+
+    if (values.dueDay === "指定なし") {
+      formattedDate.setHours(23, 59, 59, 0);
+    } else {
+      let hour = values.dueDay.split(":")[0];
+      formattedDate.setHours(hour, 0, 0, 0);
+    }
+
+    let monthAndDate = [formattedDate.getFullYear(), formattedDate.getMonth() + 1,  formattedDate.getDate()].join("/");
+    let hourAndMinutes = [formattedDate.getHours(), formattedDate.getMinutes()].join(":");
+
+    return this.props.createTodo(values.title, monthAndDate + " " + hourAndMinutes);
   }
 
   render() {
-    const { todos } = this.props.todos;
+    const todos = this.props.todos;
     const date = createOrdinalDate();
     const tomorrowDate = createOrdinalDate(1);
     return (
@@ -30,11 +39,15 @@ export class MainComponent extends React.Component {
         <div className="clearfix" style={Styles.MainBlock}>
           <Sidebar />
           <div style={Styles.Today}>
-            <div>
-              <p style={Styles.HeaderTitle}>Today</p>
-              <p style={Styles.HeaderSubtitle}>{date}</p>
+            <div style={{display: "flex"}}>
+              <div>
+                <p style={Styles.HeaderTitle}>Today</p>
+                <p style={Styles.HeaderSubtitle}>{date}</p>
+              </div>
             </div>
-            <AddTodoFormComponent addTodo={this.actions.addTodo}/>
+            <CreateFormComponent
+              onSubmit={this.submitData}
+            />
             <TodoCardsComponent todos={todos} />
           </div>
           <div style={Styles.Others}>
@@ -55,17 +68,11 @@ export class MainComponent extends React.Component {
   }
 }
 
-
 function createOrdinalDate(leapDay = 0) {
   const months = ["Jan", "Feb", "Mar", "Apr", "Mar", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   var day = new Date().getDate() + leapDay;
-  var month;
-  if (day === 1) {
-    month = new Date().getMonth() + 2;
-  } else {
-    month = new Date().getMonth() + 1;
-  }
+  var month = new Date().getMonth() + 1;
 
   var formattedDate = createCardinalDay(day);
 
@@ -87,10 +94,3 @@ function createCardinalDay(day) {
   return day + "th";
 }
 
-// {todos.map((todo, index) => {
-//               return (
-//                 <li key={index}>
-//                   {todo.title}
-//                 </li>
-//               );
-//             })}
