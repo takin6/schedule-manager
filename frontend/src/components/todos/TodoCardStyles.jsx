@@ -25,15 +25,7 @@ export const RightCard = {
 };
 
 export const CardContents = {
-  margin: 15,
-};
-
-export const Icon = {
-  color: "blue",
-  padding: "5px 20px",
-  border: "2px solid blue",
-  borderRadius: "50%",
-  fontSize: "35px",
+  padding: 16,
 };
 
 export const MainBody = {
@@ -42,10 +34,6 @@ export const MainBody = {
 
 export const Title = {
   fontSize: 25
-};
-
-export const DueTimeBlock = {
-  marginBottom: -10
 };
 
 export const DueTime = {

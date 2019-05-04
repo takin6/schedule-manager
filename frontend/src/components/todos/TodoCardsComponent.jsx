@@ -11,6 +11,13 @@ export class TodoCardsComponent extends React.Component {
     }
   }
 
+  decideAvatarStyle() {
+    const colorLists = ["red", "green", "blue", "lightblue", "lightgreen", "purple", "black", "gray", "brown", "orange"];
+
+    let index = Math.floor(Math.random()*(9-0));
+    return colorLists[index];
+  }
+
   dueTime(stringified_day) {
     let time = stringified_day.split(" ")[1];
     if (time === "00:00") {
@@ -33,19 +40,17 @@ export class TodoCardsComponent extends React.Component {
       <div className="clearfix" style={Styles.TodoCardsBlock}>
         { this.props.todos.map((todo, index) => {
           return (
-            <div key={index} style={this.decideCardStyle(index)}>
-              <div style={Styles.CardContents}>
-                <div>
-                  <span style={Styles.Icon}>i</span>
-                </div>
-                <div style={Styles.MainBody}>
-                  <div style={Styles.DueTimeBlock}>
-                    <span style={Styles.DueTime}>{this.dueTime(todo.formatted_due_day)}</span>
-                  </div>
-                  <div>
-                    <span style={Styles.Title}>{todo.title}</span>
-                  </div>
-                </div>
+            <div className="demo-card-square mdl-card mdl-shadow--2dp" key={index} style={this.decideCardStyle(index)}>
+              <div className="mdl-card__title mdl-card--expand">
+                <h2 className="mdl-card__title-text">{todo.title}</h2>
+              </div>
+              <div className="mdl-card__supporting-text">
+                {this.dueTime(todo.formatted_due_day)}
+              </div>
+              <div className="mdl-card__actions mdl-card--border">
+                <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                  View Updates
+                </a>
               </div>
             </div>
           );
@@ -54,3 +59,4 @@ export class TodoCardsComponent extends React.Component {
     );
   }
 }
+

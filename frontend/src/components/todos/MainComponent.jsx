@@ -16,17 +16,17 @@ export class MainComponent extends React.Component {
   submitData(values) {
     let formattedDate = new Date();
 
-    if (values.dueDay === "指定なし") {
+    if (values.todoDueDay === "指定なし") {
       formattedDate.setHours(23, 59, 59, 0);
     } else {
-      let hour = values.dueDay.split(":")[0];
+      let hour = values.todoDueDay.split(":")[0];
       formattedDate.setHours(hour, 0, 0, 0);
     }
 
     let monthAndDate = [formattedDate.getFullYear(), formattedDate.getMonth() + 1,  formattedDate.getDate()].join("/");
     let hourAndMinutes = [formattedDate.getHours(), formattedDate.getMinutes()].join(":");
 
-    return this.props.createTodo(values.title, monthAndDate + " " + hourAndMinutes);
+    return this.props.createTodo(values.todoTitle, monthAndDate + " " + hourAndMinutes);
   }
 
   render() {

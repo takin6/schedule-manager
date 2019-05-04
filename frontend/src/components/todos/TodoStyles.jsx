@@ -7,6 +7,13 @@ export const MainBlock = {
   height: "auto"
 };
 
+export const AddTodoButton = {
+  height: 40,
+  width: 40,
+  minWidth: 40,
+  marginLeft: "70%"
+};
+
 export const Today = {
   width: "45%",
   minHeight: 740,
