@@ -30,6 +30,13 @@ export function todoReducers(state = INITIAL_STATE, action) {
         error: null,
         todos: [...state.todos, action.payload]
       };
+    case types.DELETED_TODO:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        todos: state.todos.filter(todo => todo.id !== action.payload.id)
+      };
     default:
       return state;
   }

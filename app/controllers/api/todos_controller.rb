@@ -19,6 +19,15 @@ module Api
       end
     end
 
+    def destroy
+      @todo = Todo.find(params[:id])
+      if @todo.destroy!
+        render 'show', formats: 'json'
+      else
+        render json: { errors: ["something happened"] }, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def create_params

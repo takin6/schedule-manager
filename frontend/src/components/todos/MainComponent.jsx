@@ -48,7 +48,10 @@ export class MainComponent extends React.Component {
             <CreateFormComponent
               onSubmit={this.submitData}
             />
-            <TodoCardsComponent todos={todos} />
+            <TodoCardsComponent 
+              todos={todos} 
+              deleteTodo={this.props.deleteTodo}
+            />
           </div>
           <div style={Styles.Others}>
             <div>

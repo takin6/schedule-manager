@@ -35,6 +35,13 @@ export class TodoCardsComponent extends React.Component {
     }
   }
 
+  deleteTodo(todoId) {
+    if (window.confirm("Are you sure you want to delete this card?")) {
+      console.log("delete!", todoId);
+      this.props.deleteTodo(todoId);
+    }
+  }
+
   render() {
     return (
       <div className="clearfix" style={Styles.TodoCardsBlock}>
@@ -48,9 +55,15 @@ export class TodoCardsComponent extends React.Component {
                 {this.dueTime(todo.formatted_due_day)}
               </div>
               <div className="mdl-card__actions mdl-card--border">
-                <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                  View Updates
-                </a>
+                <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                  Complete
+                </button>
+                <button 
+                  className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                  onClick={this.deleteTodo.bind(this, todo.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           );

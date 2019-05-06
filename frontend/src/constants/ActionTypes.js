@@ -4,3 +4,4 @@ export const ENTITIES_FAILURE = 'ENTITIES_FAILURE';
 
 export const INIT_TODOS = "INIT_TODOS";
 export const HANDLE_ADDING_MODE = "HANDLE_ADDING_MODE";
+export const DELETED_TODO = "DELETED_TODO";
