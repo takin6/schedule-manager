@@ -35,3 +35,27 @@ body {
   height: 1px;
 }
 
+.todo-list .todo .edit {
+  display: none;
+}
+
+.todo-list .editing {
+  border-bottom: none;
+  padding: 0;
+}
+
+.todo-list .editing .edit {
+  display: block;
+  /*width: calc(100% - 43px);*/
+  padding: 8px;
+  margin: 35px 4px 17px 4px;
+  font-size: 24px;
+}
+
+.view-todo-title {
+  min-height: 50%;
+}
+
+.todo-list .editing .view-todo-title {
+  display: none;
+}

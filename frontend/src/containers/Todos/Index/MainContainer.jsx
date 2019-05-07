@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { MainComponent } from '../../../components/todos/MainComponent';
-import { deleteTodo, postTodo, handleAddingMode } from '../../../actions/Todos';
+import { 
+  postTodo,
+  editTodoTitle,
+  cancelEditTodoTitle,
+  doneEditTodoTitle,
+  deleteTodo,
+  handleAddingMode
+} from '../../../actions/Todos';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,6 +19,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   createTodo: postTodo,
   handleAddingMode: handleAddingMode,
+  editTodoTitle: editTodoTitle,
+  cancelEditTodoTitle: cancelEditTodoTitle,
+  doneEditTodoTitle: doneEditTodoTitle,
   deleteTodo: deleteTodo
 };
 

@@ -27,6 +27,21 @@ export const deletedTodo = (json) => ({
   payload: json.todo
 });
 
+export const editTodoTitle = (id) => ({
+  type: types.EDIT_TODO_TITLE,
+  payload: id
+});
+
+export const cancelEditTodoTitle = (id) => ({
+  type: types.CANCEL_EDIT_TODO_TITLE,
+  payload: id
+});
+
+export const receivedUpdateTodo = (json) => ({
+  type: types.DONE_EDIT_TODO_TITLE,
+  payload: json.todo
+});
+
 export function postTodo(title, dueDay) {
   let params = {
     todo: {
@@ -37,7 +52,7 @@ export function postTodo(title, dueDay) {
 
   return function(dispatch) {
     dispatch(requestTodo());
-    return axios.post('http://localhost:3000/api/todos', params)
+    return axios.post('/api/todos', params)
       .then(response =>
         dispatch(receivedTodo(response.data))
       )
@@ -47,10 +62,29 @@ export function postTodo(title, dueDay) {
   };
 }
 
+export function doneEditTodoTitle(id, newTitle) {
+  let params = {
+    todo: {
+      title: newTitle
+    }
+  };
+  return function(dispatch) {
+    dispatch(requestTodo());
+    return axios.patch(`/api/todos/${id}`, params)
+      .then(response => {
+        console.log(response.data);
+        dispatch(receivedUpdateTodo(response.data));
+      })
+      .catch(error => 
+        console.log('An error occured. ', error)
+      );
+  };
+}
+
 export function deleteTodo(id) {
   return function(dispatch) {
     dispatch(requestTodo());
-    return axios.delete(`http://localhost:3000/api/todos/${id}`)
+    return axios.delete(`/api/todos/${id}`)
       .then(response => {
         dispatch(deletedTodo(response.data));
       })

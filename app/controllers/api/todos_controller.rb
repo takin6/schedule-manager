@@ -1,5 +1,7 @@
 module Api
   class TodosController < ::Api::ApplicationController
+    before_action :set_todo, only: %i[update destroy]
+
     def index
       @todos = Todo.all.sort_by do |todo|
         [todo.due_day]
@@ -10,9 +12,28 @@ module Api
     def create
       params = create_params
 
-      formattedTime = DateTime.parse(params[:due_day])
+      formatted_time = DateTime.parse(params[:due_day])
 
-      if @todo = Todo.create!(title: params[:title], due_day: formattedTime)
+      if @todo = Todo.create!(title: params[:title], due_day: formatted_time)
+        render 'show', formats: 'json'
+      else
+        render json: { errors: ["something happened"] }, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      params = create_params
+
+      if params[:title]
+        @todo.title = params[:title]
+      end
+
+      if params[:due_day]
+        formatted_time = DateTime.parse(params[:due_day])
+        @todo.due_day = formatted_time
+      end
+
+      if @todo.save!
         render 'show', formats: 'json'
       else
         render json: { errors: ["something happened"] }, status: :unprocessable_entity
@@ -20,7 +41,6 @@ module Api
     end
 
     def destroy
-      @todo = Todo.find(params[:id])
       if @todo.destroy!
         render 'show', formats: 'json'
       else
@@ -29,6 +49,10 @@ module Api
     end
 
     private
+
+    def set_todo
+      @todo = Todo.find(params[:id])
+    end
 
     def create_params
       params

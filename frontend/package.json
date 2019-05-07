@@ -54,6 +54,7 @@
     "normalizr-immutable": "0.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
+    "react-addons-pure-render-mixin": "^15.6.2",
     "react-dom": "^16.8.4",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.1",

@@ -51,6 +51,9 @@ export class MainComponent extends React.Component {
             <TodoCardsComponent 
               todos={todos} 
               deleteTodo={this.props.deleteTodo}
+              editTodoTitle={this.props.editTodoTitle}
+              cancelEditTodoTitle={this.props.cancelEditTodoTitle}
+              doneEditTodoTitle={this.props.doneEditTodoTitle}
             />
           </div>
           <div style={Styles.Others}>

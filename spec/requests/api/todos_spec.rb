@@ -42,9 +42,32 @@ RSpec.describe 'Todos', type: :request do
     end
   end
 
+  describe "PATCH /todos" do
+    context "edit a todo" do
+      before do
+        @todo = create(:todo)
+      end
+
+      let(:params) do
+        {
+          todo: {
+            title: "updated",
+            due_day: 5.days.since(DateTime.current)
+          }
+        }
+      end
+
+      it do
+        patch api_todo_path(id: @todo.id), params: params
+        expect(response).to have_http_status(200)
+        expect(json[:todo][:title]).to eq "updated"
+      end
+    end
+  end
+
   describe "DELETE /todos" do
     context "create a todo" do
-      before :all do
+      before do
         @todo = create(:todo)
       end
 
@@ -64,7 +87,6 @@ RSpec.describe 'Todos', type: :request do
         ).by(-1)
 
         expect(response).to have_http_status(200)
-        byebug
         expect(json[:todo][:title]).to eq @todo.title
       end
     end
