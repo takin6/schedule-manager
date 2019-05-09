@@ -16,7 +16,7 @@ export class MainComponent extends React.Component {
   submitData(values) {
     let formattedDate = new Date();
 
-    if (values.todoDueDay === "指定なし") {
+    if (values.todoDueDay === "undefined") {
       formattedDate.setHours(23, 59, 59, 0);
     } else {
       let hour = values.todoDueDay.split(":")[0];
