@@ -20,7 +20,6 @@ export default class TodoInput extends React.Component {
   _handleKeyDown(e) {
     switch (e.key) {
       case 'Enter':
-        debugger;
         return this.props.doneEditing(this.props.todo.id, e.target.value);
       case 'Escape':
         return this.props.cancelEditing(this.props.itemId);

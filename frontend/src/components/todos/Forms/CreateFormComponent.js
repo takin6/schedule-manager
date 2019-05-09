@@ -37,14 +37,12 @@ const CreateTodoForm = props => {
         <Field
           name="todoTitle"
           component={renderTextField}
-          label="title"
         />
       </div>
       <div style={{marginTop: 5}}>
         <Field
           name="todoDueDay"
           component={renderSelectField}
-          label="dueDay"
         />
       </div>
       <div style={{marginTop: 10}}>
@@ -63,7 +61,7 @@ const CreateTodoForm = props => {
 
 export default reduxForm({
   form: 'CreateTodoForm', // a unique identifier for this form
-  validate,
+  validate
 })(CreateTodoForm);
 
 
