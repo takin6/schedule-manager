@@ -34,8 +34,6 @@ export default class TodoInput extends React.Component {
 
   _handleOnChange(e) {
     e.preventDefault();
-    console.log(this.props);
-    console.log(e.target.value);
     this.setState({value: e.target.value});
   }
 

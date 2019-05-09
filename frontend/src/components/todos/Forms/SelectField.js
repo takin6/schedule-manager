@@ -20,7 +20,6 @@ export default class SelectField extends Component{
   }
 
   render (){
-    console.log(this.props.value);
     let itemClass = classNames({
       'mdl-textfield': true,
       'mdl-js-textfield': true,

@@ -45,7 +45,6 @@ export default class TodoCardComponent extends React.Component {
 
   deleteTodo(todoId) {
     if (window.confirm("Are you sure you want to delete this card?")) {
-      console.log("delete!", todoId);
       this.props.deleteTodo(todoId);
     }
   }
