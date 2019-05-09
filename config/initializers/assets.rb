@@ -12,3 +12,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# Version of your assets, change this if you want to expire all your assets.
+# Rails.application.config.assets.precompile += %w(manager.js material.js axios.js)
+# Rails.application.config.assets.precompile += %w(chat.scss manager.scss lp.scss mailer.scss)
+# Rails.application.config.assets.precompile += %w(modules/*.css pages/*.css)
+Rails.application.config.assets.precompile += %w(components/*.js)
+Rails.application.config.assets.precompile += %w(serverside/*.js)
+Rails.application.config.assets.precompile += %w(*.js *.css)
+Rails.application.config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*(\.js|\.css)$/
+

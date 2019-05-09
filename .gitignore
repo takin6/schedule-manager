@@ -26,3 +26,9 @@ vendor/bundle/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+# frontend files
+/app/assets/javascripts
+/frontend/node_modules
+/node_modules

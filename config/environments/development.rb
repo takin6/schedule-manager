@@ -1,3 +1,7 @@
+require 'hypernova'
+require 'hypernova/plugins/development_mode_plugin'
+Hypernova.add_plugin!(DevelopmentModePlugin.new)
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

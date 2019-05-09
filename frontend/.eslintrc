@@ -1,0 +1,28 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "indent": [ 2, 2, {SwitchCase: 1}],
+    "linebreak-style": [ 2, "unix" ],
+    "semi": [ 2, "always" ],
+    'no-console': 'off',
+    "react/prop-types": 0,
+    "no-debugger": 0,
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ]
+}
