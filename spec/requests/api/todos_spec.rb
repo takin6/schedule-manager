@@ -52,7 +52,8 @@ RSpec.describe 'Todos', type: :request do
         {
           todo: {
             title: "updated",
-            due_day: 5.days.since(DateTime.current)
+            due_day: 5.days.since(DateTime.current),
+            completed: true
           }
         }
       end
