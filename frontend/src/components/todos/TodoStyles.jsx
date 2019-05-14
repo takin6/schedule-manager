@@ -19,6 +19,7 @@ export const Today = {
   minHeight: 740,
   float: "left",
   borderRight: "2px solid lightblue",
+  borderLeft: "2px solid lightblue",
   padding: 30
 };
 

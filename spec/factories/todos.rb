@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :todo do
     title { "React" }
-    due_day { 1.day.since(DateTime.current) }
+    due_day { DateTime.current }
   end
 end

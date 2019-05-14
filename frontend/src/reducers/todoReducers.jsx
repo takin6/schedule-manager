@@ -3,6 +3,10 @@ import * as types from '../constants/ActionTypes';
 const INITIAL_STATE = {
   loading: false,
   todos: [],
+  today_todos: [],
+  overdue_todos: [],
+  tomorrow_todos: [],
+  due_undefined_todos: [],
   error: null
 };
 
@@ -25,7 +29,11 @@ export function todoReducers(state = INITIAL_STATE, action) {
     case types.INIT_TODOS:
       return {
         ...state,
-        todos: action.payload.todos
+        todos: action.payload.todos,
+        today_todos: action.payload.today_todos,
+        overdue_todos: action.payload.overdue_todos,
+        tomorrow_todos: action.payload.tomorrow_todos,
+        due_undefined_todos: action.payload.due_undefined_todos,
       };
     case types.HANDLE_ADDING_MODE:
       return {

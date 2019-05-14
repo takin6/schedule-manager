@@ -1,19 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe 'Todos', type: :request do
+  before :each do
+    Timecop.freeze(Time.current)
+  end
+
   let(:json) { JSON.parse(response.body, { symbolize_names: true }) }
   describe "GET /todos" do
     context "displays todos" do
       before do
         2.times { create(:todo) }
+        create(:todo, due_day: 1.day.before(DateTime.current))
+        create(:todo, due_day: DateTime.tomorrow)
+        # create(:todo, due_day: )
       end
 
       it do
         get api_todos_path
         expect(response).to have_http_status(200)
-        expect(json[:todos].size).to eq(2)
+        expect(json[:todos].size).to eq(4)
         expect(json[:todos][0][:title]).to eq "React"
-        expect(json[:todos][0][:formatted_due_day]).to eq 1.day.since(Date.current).strftime('%Y-%m-%d %H:%m')
+        expect(json[:todos][0][:formatted_due_day]).to eq 1.day.before(DateTime.current).strftime('%Y-%m-%d %H:%M')
+        expect(json[:today_todos].size).to eq 2
+        expect(json[:overdue_todos].size).to eq 1
+        expect(json[:tomorrow_todos].size).to eq 1
       end
     end
   end

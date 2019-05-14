@@ -1,11 +1,9 @@
 <% arg = {
-    todos: @todos.map do |todo|
-      {
-        id: todo.id,
-        title: todo.title,
-        formatted_due_day: todo.formatted_due_day
-      }
-    end
+    todos: @todos&.map(&:to_json),
+    today_todos: @today_todos&.map(&:to_json),
+    overdue_todos: @overdue_todos&.map(&:to_json),
+    tomorrow_todos: @tomorrow_todos&.map(&:to_json),
+    due_undefined_todos: @due_undefined_todos&.map(&:to_json),
   }
 %>
 
