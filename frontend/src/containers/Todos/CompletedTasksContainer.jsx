@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import { MainComponent } from '../../../components/todos/MainComponent';
+import { MainComponent } from '../../components/Todos/Today/CompletedTasks/MainComponent';
 import { 
   postTodo,
   editTodoTitle,
@@ -8,11 +8,11 @@ import {
   doneEditTodoTitle,
   deleteTodo,
   handleAddingMode
-} from '../../../actions/Todos';
+} from '../../actions/Todos';
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todoReducers.todos,
+    completedTodos: state.todoReducers.today_todos.filter(todo => todo.completed === true),
   };
 };
 
@@ -30,4 +30,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(MainComponent);
-

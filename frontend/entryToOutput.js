@@ -3,7 +3,7 @@ const path = require('path');
 var serversideOutputPath = path.resolve('../app/assets/javascripts/serverside');
 var clientsideOutputPath = path.resolve('../app/assets/javascripts/components');
 var entry = {
-  'Todo': './src/components/Todo',
+  'Todo': './src/components/TodoIndex',
 };
 
 // hypernova用にoutputFileを作成

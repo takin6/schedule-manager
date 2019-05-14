@@ -10,6 +10,7 @@ export default class TodoCardComponent extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.textInput = React.createRef();
     this.focusTextInput = this.focusTextInput.bind(this);
+    // this.onClickComplete = this.onClickComplete.bind(this);
   }
 
   focusTextInput() {
@@ -49,6 +50,12 @@ export default class TodoCardComponent extends React.Component {
     }
   }
 
+  completeTodo(todoId) {
+    if (window.confirm("Did you complete this task?")) {
+      this.props.completeTodo(todoId);
+    }
+  }
+
   render() {
     let itemClass = classNames({
       'demo-card-square': true,
@@ -57,7 +64,6 @@ export default class TodoCardComponent extends React.Component {
       'todo': true,
       'editing': this.props.todo.editing
     });
-
     return (
       <div className={itemClass} key={this.props.index} style={this.decideCardStyle(this.props.index)}>
         <div className="view-todo-title">
@@ -77,7 +83,10 @@ export default class TodoCardComponent extends React.Component {
           {this.dueTime(this.props.todo.formatted_due_day)}
         </div>
         <div className="mdl-card__actions mdl-card--border">
-          <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          <button 
+            className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+            onClick={this.completeTodo.bind(this, this.props.todo.id)}
+          >
             Complete
           </button>
           <button 

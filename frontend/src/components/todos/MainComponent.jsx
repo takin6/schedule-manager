@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Header } from '../Header/MainComponent';
 import { Sidebar } from '../Sidebar/MainComponent';
-import { TodoCardsComponent } from './TodoCardsComponent';
 import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
-import CreateFormComponent from './forms/CreateFormComponent';
+import TodayContainer from '../../containers/Todos/TodayContainer';
+import CompletedTasksContainer from '../../containers/Todos/CompletedTasksContainer';
 import * as Styles from './TodoStyles';
 
 export class MainComponent extends React.Component {
@@ -30,33 +30,16 @@ export class MainComponent extends React.Component {
   }
 
   render() {
-    const todos = this.props.todos;
-    const date = createOrdinalDate();
+    const todos = this.props.completedTodos;
     const tomorrowDate = createOrdinalDate(1);
     return (
       <div className="clearfix" style={Styles.Block}>
         <Header />
         <div className="clearfix" style={Styles.MainBlock}>
           <Sidebar />
-          <div style={Styles.Today}>
-            <div style={{display: "flex"}}>
-              <div>
-                <p style={Styles.HeaderTitle}>Today</p>
-                <p style={Styles.HeaderSubtitle}>{date}</p>
-              </div>
-            </div>
-            <CreateFormComponent
-              onSubmit={this.submitData}
-            />
-            <TodoCardsComponent 
-              todos={todos} 
-              deleteTodo={this.props.deleteTodo}
-              editTodoTitle={this.props.editTodoTitle}
-              cancelEditTodoTitle={this.props.cancelEditTodoTitle}
-              doneEditTodoTitle={this.props.doneEditTodoTitle}
-            />
-          </div>
+          <TodayContainer />
           <div style={Styles.Others}>
+            <CompletedTasksContainer />
             <div>
               <p style={Styles.HeaderTitle}>Tomorrow</p>
               <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>

@@ -35,8 +35,8 @@ export default renderReact(
 );
 
 if (module.hot) {
-  module.hot.accept("./todos/TodoComponent", () => {
-    const NewTodoComponent = require('./todos/TodoComponent').TodoComponent;
+  module.hot.accept("./Todos/TodoComponent", () => {
+    const NewTodoComponent = require('./Todos/TodoComponent').TodoComponent;
     renderReact(
       createClass(<NewTodoComponent store={store}/>, false),
     );
