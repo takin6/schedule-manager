@@ -17,7 +17,7 @@ module Api
     def create
       params = create_params
 
-      formatted_time = DateTime.parse(params[:due_day])
+      formatted_time = Time.parse(params[:due_day])
 
       if @todo = Todo.create!(title: params[:title], due_day: formatted_time)
         render 'show', formats: 'json'
@@ -34,8 +34,12 @@ module Api
       end
 
       if params[:due_day]
-        formatted_time = DateTime.parse(params[:due_day])
+        formatted_time = Time.parse(params[:due_day])
         @todo.due_day = formatted_time
+      end
+
+      if params[:completed]
+        @todo.completed = params[:completed]
       end
 
       if @todo.save!
@@ -64,7 +68,8 @@ module Api
         .require(:todo)
         .permit(
           :title,
-          :due_day
+          :due_day,
+          :completed
         )
     end
   end
