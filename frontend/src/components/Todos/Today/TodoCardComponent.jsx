@@ -78,7 +78,8 @@ export default class TodoCardComponent extends React.Component {
         <TextInput 
           todo={this.props.todo}
           cancelEditing={this.props.cancelEditTodoTitle}
-          doneEditing={this.props.doneEditTodoTitle} />
+          doneEditing={this.props.doneEditTodoTitle} 
+        />
         <div className="mdl-card__supporting-text">
           {this.dueTime(this.props.todo.formatted_due_day)}
         </div>

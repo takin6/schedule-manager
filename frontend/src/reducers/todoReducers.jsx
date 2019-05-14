@@ -68,7 +68,7 @@ export function todoReducers(state = INITIAL_STATE, action) {
       //   state.todos[editItemIndex],
       //   {'title': action.payload.title, 'editing': true}
       // );
-      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload);
       updatedTodayItem = { ...state.today_todos[editTodayItemIndex], editing: true};
       return {
         ...state,
@@ -78,8 +78,8 @@ export function todoReducers(state = INITIAL_STATE, action) {
     case types.CANCEL_EDIT_TODO_TITLE:
       editItemIndex = findItemIndex(state.todos, action.payload);
       updatedItem = { ...state.todos[editItemIndex], editing: false };
-      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
-      updatedTodayItem = { ...state.today_todos[editTodayItemIndex], editing: true};
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload);
+      updatedTodayItem = { ...state.today_todos[editTodayItemIndex], editing: false};
       return {
         ...state,
         todos: updateTodoList(state, editItemIndex, updatedItem),
