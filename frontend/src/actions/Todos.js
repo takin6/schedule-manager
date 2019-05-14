@@ -81,6 +81,25 @@ export function doneEditTodoTitle(id, newTitle) {
   };
 }
 
+export function completeTodo(id) {
+  let params = {
+    todo: {
+      completed: true
+    }
+  };
+  return function(dispatch) {
+    dispatch(requestTodo());
+    return axios.patch(`/api/todos/${id}`, params)
+      .then(response => {
+        console.log(response.data);
+        dispatch(receivedUpdateTodo(response.data));
+      })
+      .catch(error => 
+        console.log('An error occured. ', error)
+      );
+  };
+}
+
 export function deleteTodo(id) {
   return function(dispatch) {
     dispatch(requestTodo());

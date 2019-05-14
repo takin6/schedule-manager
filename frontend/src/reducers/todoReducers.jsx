@@ -10,8 +10,8 @@ const INITIAL_STATE = {
   error: null
 };
 
-function findItemIndex(state, todoId) {
-  return state.todos.findIndex((todo) => todo.id === todoId);
+function findItemIndex(todos, todoId) {
+  return todos.findIndex((todo) => todo.id === todoId);
 }
 
 function updateTodoList(state, itemIndex, updatedItem) {
@@ -22,8 +22,16 @@ function updateTodoList(state, itemIndex, updatedItem) {
   ];
 }
 
+function updateTodayTodoList(state, itemIndex, updatedItem) {
+  return [
+    ...state.today_todos.slice(0, itemIndex),
+    updatedItem,
+    ...state.today_todos.slice(itemIndex + 1)
+  ];
+}
+
 export function todoReducers(state = INITIAL_STATE, action) {
-  var editItemIndex, updatedItem;
+  var editItemIndex, editTodayItemIndex, updatedItem, updatedTodayItem;
 
   switch(action.type) {
     case types.INIT_TODOS:
@@ -50,39 +58,50 @@ export function todoReducers(state = INITIAL_STATE, action) {
         ...state,
         loading: false,
         error: null,
-        todos: [...state.todos, action.payload]
+        todos: [...state.todos, action.payload],
+        today_todos: [...state.today_todos, action.payload]
       };
     case types.EDIT_TODO_TITLE:
-      editItemIndex = findItemIndex(state, action.payload);
+      editItemIndex = findItemIndex(state.todos, action.payload);
       updatedItem = { ...state.todos[editItemIndex], editing: true};
       // updatedItem = Object.assign(
       //   state.todos[editItemIndex],
       //   {'title': action.payload.title, 'editing': true}
       // );
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
+      updatedTodayItem = { ...state.today_todos[editTodayItemIndex], editing: true};
       return {
         ...state,
-        todos: updateTodoList(state, editItemIndex, updatedItem)
+        todos: updateTodoList(state, editItemIndex, updatedItem),
+        today_todos: updateTodayTodoList(state, editTodayItemIndex, updatedTodayItem)
       };
     case types.CANCEL_EDIT_TODO_TITLE:
-      editItemIndex = findItemIndex(state, action.payload);
+      editItemIndex = findItemIndex(state.todos, action.payload);
       updatedItem = { ...state.todos[editItemIndex], editing: false };
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
+      updatedTodayItem = { ...state.today_todos[editTodayItemIndex], editing: true};
       return {
         ...state,
-        todos: updateTodoList(state, editItemIndex, updatedItem)
+        todos: updateTodoList(state, editItemIndex, updatedItem),
+        today_todos: updateTodayTodoList(state, editTodayItemIndex, updatedTodayItem),
       };
     case types.DONE_EDIT_TODO_TITLE:
-      editItemIndex = findItemIndex(state, action.payload.id);
-      updatedItem = { ...state.todos[editItemIndex], title: action.payload.title, editing: false };
+      editItemIndex = findItemIndex(state.todos, action.payload.id);
+      updatedItem = { ...state.todos[editItemIndex], title: action.payload.title, completed: action.payload.completed, editing: false };
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
+      updatedTodayItem = { ...state.today_todos[editTodayItemIndex], title: action.payload.title, completed: action.payload.completed, editing: false};
       return {
         ...state,
-        todos: updateTodoList(state, editItemIndex, updatedItem)
+        todos: updateTodoList(state, editItemIndex, updatedItem),
+        today_todos: updateTodayTodoList(state, editTodayItemIndex, updatedTodayItem),
       };
     case types.DELETED_TODO:
       return {
         ...state,
         loading: false,
         error: null,
-        todos: state.todos.filter(todo => todo.id !== action.payload.id)
+        todos: state.todos.filter(todo => todo.id !== action.payload.id),
+        today_todos: state.today_todos.filter(todo => todo.id !== action.payload.id)
       };
     default:
       return state;
