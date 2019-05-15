@@ -100,6 +100,25 @@ export function completeTodo(id) {
   };
 }
 
+export function uncompleteTodo(id) {
+  let params = {
+    todo: {
+      completed: false
+    }
+  };
+  return function(dispatch) {
+    dispatch(requestTodo());
+    return axios.patch(`/api/todos/${id}`, params)
+      .then(response => {
+        console.log(response.data);
+        dispatch(receivedUpdateTodo(response.data));
+      })
+      .catch(error => 
+        console.log('An error occured. ', error)
+      );
+  };
+}
+
 export function deleteTodo(id) {
   return function(dispatch) {
     dispatch(requestTodo());

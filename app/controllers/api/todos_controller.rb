@@ -38,7 +38,7 @@ module Api
         @todo.due_day = formatted_time
       end
 
-      if params[:completed]
+      if params[:completed].is_a?(FalseClass) || params[:completed].is_a?(TrueClass)
         @todo.completed = params[:completed]
       end
 

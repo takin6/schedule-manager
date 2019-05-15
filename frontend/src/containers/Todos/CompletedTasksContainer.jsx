@@ -1,13 +1,9 @@
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 import { MainComponent } from '../../components/Todos/Today/CompletedTasks/MainComponent';
-import { 
-  postTodo,
-  editTodoTitle,
-  cancelEditTodoTitle,
-  doneEditTodoTitle,
+import {
   deleteTodo,
-  handleAddingMode
+  uncompleteTodo
 } from '../../actions/Todos';
 
 const mapStateToProps = (state) => {
@@ -17,11 +13,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  createTodo: postTodo,
-  handleAddingMode: handleAddingMode,
-  editTodoTitle: editTodoTitle,
-  cancelEditTodoTitle: cancelEditTodoTitle,
-  doneEditTodoTitle: doneEditTodoTitle,
+  uncompleteTodo: uncompleteTodo,
   deleteTodo: deleteTodo
 };
 

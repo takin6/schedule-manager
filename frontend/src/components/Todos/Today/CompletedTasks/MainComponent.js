@@ -6,6 +6,7 @@ export class MainComponent extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    // this.uncompleteTodo = React.createRef();
   }
 
   deleteTodo(todoId) {
@@ -14,7 +15,14 @@ export class MainComponent extends React.Component {
     }
   }
 
+  onClickUncompleteTodo(todoId) {
+    if (window.confirm("Do you want to mark this todo as uncompleted?")) {
+      this.props.uncompleteTodo(todoId);
+    }
+  }
+
   render() {
+    const finalTodoIndex = this.props.completedTodos.length-1;
     return (
       <div className="completed-todos">
         <span style={{fontWeight: "bold", "font-size": 25}}>Completed</span>
@@ -22,10 +30,17 @@ export class MainComponent extends React.Component {
         <ul className="demo-list-control mdl-list" style={{backgroundColor: "white", maxWidth: "28em", padding: "0 10px 0 10px"}}>
           { this.props.completedTodos.map((todo, index) => {
             return (
-              <li className="mdl-list__item" key={index} style={{borderBottom: "2px solid lightBlue"}}>
-                <span className="mdl-list__item-secondary-action">
-                  <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="list-checkbox-1">
-                    <input type="checkbox" id="list-checkbox-1" className="mdl-checkbox__input" checked />
+              <li className="mdl-list__item" 
+                key={index}
+                style={ !(finalTodoIndex === index) ? {borderBottom: "2px solid lightBlue"} : {} }
+              >
+                <span className="mdl-list__item-secondary-action" style={{minWidth: 30}}>
+                  <label 
+                    className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" 
+                    htmlFor={`list-checkbox-${index}`} 
+                    onClick={this.onClickUncompleteTodo.bind(this, todo.id)}
+                  >
+                    <input style={{minWidth: 30}} type="checkbox" className="mdl-checkbox__input" key={`list-checkbox-${index}`} defaultChecked />
                   </label>
                 </span>
                 <span className="mdl-list__item-primary-content">
