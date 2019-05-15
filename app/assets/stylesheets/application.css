@@ -59,3 +59,8 @@ body {
 .todo-list .editing .view-todo-title {
   display: none;
 }
+
+input[type=checkbox] {
+  display: none;
+}
+

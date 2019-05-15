@@ -1,11 +1,13 @@
 import * as React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { Checkbox } from 'react-mdl';
 // import classNames from 'classnames';
 
 export class MainComponent extends React.Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = {checked: true};
     // this.uncompleteTodo = React.createRef();
   }
 
@@ -21,11 +23,15 @@ export class MainComponent extends React.Component {
     }
   }
 
+  checkboxHandler() {
+    return this.state;
+  }
+
   render() {
     const finalTodoIndex = this.props.completedTodos.length-1;
     return (
       <div className="completed-todos">
-        <span style={{fontWeight: "bold", "font-size": 25}}>Completed</span>
+        <span style={{fontWeight: "bold", "fontSize": 25}}>Completed</span>
 
         <ul className="demo-list-control mdl-list" style={{backgroundColor: "white", maxWidth: "28em", padding: "0 10px 0 10px"}}>
           { this.props.completedTodos.map((todo, index) => {
@@ -35,13 +41,13 @@ export class MainComponent extends React.Component {
                 style={ !(finalTodoIndex === index) ? {borderBottom: "2px solid lightBlue"} : {} }
               >
                 <span className="mdl-list__item-secondary-action" style={{minWidth: 30}}>
-                  <label 
-                    className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" 
+                  <Checkbox 
+                    ripple
+                    checked={ this.state.checked }
+                    onChange={ this.checkboxHandler.bind(this) } 
                     htmlFor={`list-checkbox-${index}`} 
                     onClick={this.onClickUncompleteTodo.bind(this, todo.id)}
-                  >
-                    <input style={{minWidth: 30}} type="checkbox" className="mdl-checkbox__input" key={`list-checkbox-${index}`} defaultChecked />
-                  </label>
+                  />
                 </span>
                 <span className="mdl-list__item-primary-content">
                   {todo.title}
