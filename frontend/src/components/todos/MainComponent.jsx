@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Header } from '../Header/MainComponent';
 import { Sidebar } from '../Sidebar/MainComponent';
-import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
+// import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
 import TodayContainer from '../../containers/Todos/TodayContainer';
 import CompletedTasksContainer from '../../containers/Todos/CompletedTasksContainer';
 import * as Styles from './TodoStyles';
@@ -30,8 +30,8 @@ export class MainComponent extends React.Component {
   }
 
   render() {
-    const todos = this.props.completedTodos;
-    const tomorrowDate = createOrdinalDate(1);
+    // const todos = this.props.completedTodos;
+    // const tomorrowDate = createOrdinalDate(1);
     return (
       <div className="clearfix" style={Styles.Block}>
         <Header />
@@ -40,46 +40,22 @@ export class MainComponent extends React.Component {
           <TodayContainer />
           <div style={Styles.Others}>
             <CompletedTasksContainer />
-            <div>
-              <p style={Styles.HeaderTitle}>Tomorrow</p>
-              <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
-            </div>
-            <OtherTodoCardsComponent todos={todos} />
-            <div>
-              <p style={Styles.HeaderTitle}>Day after Tomorrow</p>
-              <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
-            </div>
-            <OtherTodoCardsComponent todos={todos} />
+            {/* 
+              <div>
+                <p style={Styles.HeaderTitle}>Tomorrow</p>
+                <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
+              </div>
+              <OtherTodoCardsComponent todos={todos} />
+              <div>
+                <p style={Styles.HeaderTitle}>Day after Tomorrow</p>
+                <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
+              </div>
+              <OtherTodoCardsComponent todos={todos} />
+            */}
           </div>
         </div>
       </div>
     );
   }
-}
-
-function createOrdinalDate(leapDay = 0) {
-  const months = ["Jan", "Feb", "Mar", "Apr", "Mar", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-  var day = new Date().getDate() + leapDay;
-  var month = new Date().getMonth() + 1;
-
-  var formattedDate = createCardinalDay(day);
-
-  return formattedDate + " " + months[month-1];
-}
-
-function createCardinalDay(day) {
-  let j = day % 10;
-  let k = day % 100;
-  if (j == 1 && k != 11) {
-    return day + "st";
-  }
-  if (j == 2 && k != 12) {
-    return day + "nd";
-  }
-  if (j == 3 && k != 13) {
-    return day + "rd";
-  }
-  return day + "th";
 }
 

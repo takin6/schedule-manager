@@ -9,16 +9,25 @@ namespace :adhoc do
       today_todos = todos[0..todos.length-10]
 
       p "uncompleted_today_todos"
-      uncompleted_today_todos = today_todos[0..today_todos.length/2].map do |todo|
+      uncompleted_today_todos = today_todos[0..today_todos.length/4].map do |todo|
         p "#{todo.id}"
-        todo.due_day = Time.current
+        todo.due_day = Time.current + 2.hour
+        todo.completed = false
+        todo.save!
+      end
+      p "========================================================================"
+
+      p "overdue_today_todos"
+      overdue_today_todos = today_todos[today_todos.length/4+1..today_todos.length/2].map do |todo|
+        p "#{todo.id}"
+        todo.due_day = Time.current - 1
         todo.completed = false
         todo.save!
       end
       p "========================================================================"
 
       p "completed_today_todos"
-      completed_today_todos = today_todos[todos.length/2+1..today_todos.length].map do |todo|
+      completed_today_todos = today_todos[today_todos.length/2+1..today_todos.length].map do |todo|
         p "#{todo.id}"
         todo.due_day = Time.current
         todo.completed = true

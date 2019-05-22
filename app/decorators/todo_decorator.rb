@@ -7,6 +7,7 @@ class TodoDecorator < Draper::Decorator
       title: object.title,
       due_day: object.due_day,
       formatted_due_day: object.formatted_due_day,
+      formatted_due_date: object.formatted_due_date,
       formatted_due_time: object.formatted_due_time,
       completed: object.completed
     }

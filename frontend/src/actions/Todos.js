@@ -42,6 +42,11 @@ export const receivedUpdateTodo = (json) => ({
   payload: json.todo
 });
 
+export const receivedRescheduledTodo = (json) => ({
+  type: types.DONE_RESCHEDULE_TODO,
+  payload: json.todo
+});
+
 export function postTodo(title, dueDay) {
   let params = {
     todo: {
@@ -74,6 +79,26 @@ export function doneEditTodoTitle(id, newTitle) {
       .then(response => {
         console.log(response.data);
         dispatch(receivedUpdateTodo(response.data));
+      })
+      .catch(error => 
+        console.log('An error occured. ', error)
+      );
+  };
+}
+
+export function rescheduleTodo(id, dueDay) {
+  let params = {
+    todo: {
+      due_day: dueDay
+    }
+  };
+
+  return function(dispatch) {
+    dispatch(requestTodo());
+    return axios.patch(`/api/todos/${id}`, params)
+      .then(response => {
+        console.log(response.data);
+        dispatch(receivedRescheduledTodo(response.data));
       })
       .catch(error => 
         console.log('An error occured. ', error)

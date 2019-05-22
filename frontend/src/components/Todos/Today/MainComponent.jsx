@@ -3,6 +3,7 @@ import { TodoCardsComponent } from './TodoCardsComponent';
 import CreateFormComponent from '../forms/CreateFormComponent';
 import * as Styles from '../TodoStyles';
 import * as DateUtil from '../../../util/DateUtil';
+import OverdueTasksContainer from '../../../containers/Todos/OverdueTasksContainer';
 
 export class MainComponent extends React.Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export class MainComponent extends React.Component {
         <CreateFormComponent
           onSubmit={this.submitData}
         />
+        <OverdueTasksContainer />
         <TodoCardsComponent 
           todos={this.props.uncompletedTodos} 
           deleteTodo={this.props.deleteTodo}

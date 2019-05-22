@@ -13,7 +13,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    uncompletedTodos: state.todoReducers.today_todos.filter(todo => todo.completed === false),
+    uncompletedTodos: state.todoReducers.today_todos.filter(todo => todo.completed === false && new Date() < new Date(todo.formatted_due_day)),
   };
 };
 

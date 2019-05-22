@@ -6,6 +6,10 @@ class Todo < ApplicationRecord
     self.due_day&.strftime('%Y-%m-%d %H:%M')
   end
 
+  def formatted_due_date
+    self.due_day&.strftime('%m-%d')
+  end
+
   def formatted_due_time
     self.due_day&.strftime('%H:%M')
   end

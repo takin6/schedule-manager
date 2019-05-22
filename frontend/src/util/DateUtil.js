@@ -1,3 +1,4 @@
+// 22nd Marという形で書き出す
 export function createOrdinalDate(leapDay = 0) {
   const months = ["Jan", "Feb", "Mar", "Apr", "Mar", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
