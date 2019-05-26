@@ -49,6 +49,7 @@ export class MainComponent extends React.Component {
           cancelEditTodoTitle={this.props.cancelEditTodoTitle}
           doneEditTodoTitle={this.props.doneEditTodoTitle}
           completeTodo={this.props.completeTodo}
+          rescheduleTodo={this.props.rescheduleTodo}
         />
       </div>
     );

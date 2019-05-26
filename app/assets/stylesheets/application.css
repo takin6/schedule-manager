@@ -54,6 +54,7 @@ body {
 
 .view-todo-title {
   min-height: 50%;
+  /*margin: 0 auto;*/
 }
 
 .todo-list .editing .view-todo-title {

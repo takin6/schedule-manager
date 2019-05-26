@@ -102,7 +102,7 @@ export function todoReducers(state = INITIAL_STATE, action) {
       
       var month = new Date().getMonth()+1 < 10 ? "0" + `${new Date().getMonth()+1}` : `${new Date().getMonth()+1}`;
       var date = new Date().getDate() < 10 ? "0" + `${new Date().getDate()}` : `${new Date().getDate()}`;
-      updatedTodayItem = action.payload.formatted_due_date === month + "-" + date 
+      updatedTodayItem = action.payload.formatted_due_date === month + "-" + date
         ? { ...state.today_todos[editTodayItemIndex], due_day: action.payload.due_day, formatted_due_day: action.payload.formatted_due_day, formatted_time: action.payload.formatted_due_time,  editing: false}
         : null;
       return {

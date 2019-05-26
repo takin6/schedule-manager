@@ -19,7 +19,7 @@ export class TodoCardsComponent extends React.Component {
 
   render() {
     return (
-      <div className="todo-list clearfix" style={Styles.TodoCardsBlock}>
+      <ul className="todo-list" style={Styles.TodoCardsBlock}>
         { this.props.todos.map((todo, index) => {
           return (
             <TodoCardComponent
@@ -31,10 +31,11 @@ export class TodoCardsComponent extends React.Component {
               doneEditTodoTitle={this.props.doneEditTodoTitle}
               deleteTodo={this.props.deleteTodo}
               completeTodo={this.props.completeTodo}
+              rescheduleTodo={this.props.rescheduleTodo}
             />
           );
         })}
-      </div>
+      </ul>
     );
   }
 }

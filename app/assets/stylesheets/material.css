@@ -10846,6 +10846,9 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
 /* SNACKBAR */
 /* TOOLTIP */
 /* CHIP */
+.mdl-menu__container.is-upgraded.is-visible {
+  bottom: 39px !important;
+}
 .mdl-grid {
   display: -webkit-flex;
   display: -ms-flexbox;

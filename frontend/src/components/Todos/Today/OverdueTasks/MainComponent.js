@@ -45,7 +45,6 @@ export class MainComponent extends React.Component {
                     checked={ this.state.checked }
                     onChange={ this.checkboxHandler.bind(this) } 
                     htmlFor={`list-checkbox-${index}`} 
-                    onClick={this.onClickUncompleteTodo.bind(this, todo.id)}
                   />
                 </span>
                 <span className="mdl-list__item-primary-content">

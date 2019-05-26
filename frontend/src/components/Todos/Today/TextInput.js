@@ -9,7 +9,7 @@ export default class TodoInput extends React.Component {
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleOnBlur = this._handleOnBlur.bind(this);
     this._handleOnChange = this._handleOnChange.bind(this);
-    this.state = {value: this.props.todo.title};
+    this.state = {value: null};
     // this.focusTextInput = this.focusTextInput.bind(this);
   }
 
@@ -41,7 +41,7 @@ export default class TodoInput extends React.Component {
     return (
       <input className="edit"
         autoFocus={true}
-        value={this.state.value}
+        value={this.state.value === null ? this.props.todo.title : this.state.value}
         onChange={this._handleOnChange}
         type="text"
         ref={this.itemInput}
