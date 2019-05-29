@@ -4,6 +4,7 @@ import { Sidebar } from '../Sidebar/MainComponent';
 // import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
 import TodayContainer from '../../containers/Todos/TodayContainer';
 import CompletedTasksContainer from '../../containers/Todos/CompletedTasksContainer';
+import ProgressChartContainer from '../../containers/Todos/ProgressChartContainer';
 import * as Styles from './TodoStyles';
 
 export class MainComponent extends React.Component {
@@ -39,6 +40,7 @@ export class MainComponent extends React.Component {
           <Sidebar />
           <TodayContainer />
           <div style={Styles.Others}>
+            <ProgressChartContainer />
             <CompletedTasksContainer />
             {/* 
               <div>
