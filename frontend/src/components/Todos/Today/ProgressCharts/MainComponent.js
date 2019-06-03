@@ -1,98 +1,74 @@
-import React, { PureComponent } from 'react';
-import { ResponsiveContainer, PieChart, Pie, Sector } from 'recharts';
+import React from 'react';
+import { Chart, Doughnut } from 'react-chartjs-2';
+  
+var originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
+Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+  draw: function() {
+    originalDoughnutDraw.apply(this, arguments);
+    
+    var chart = this.chart;
+    var width = chart.chart.width,
+      height = chart.chart.height,
+      ctx = chart.chart.ctx;
 
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
+    var fontSize = (height / 140).toFixed(2);
+    ctx.font = fontSize + "em sans-serif";
+    ctx.textBaseline = "hanging";
 
-const renderActiveShape = (props) => {
-  const RADIAN = Math.PI / 180;
-  const {
-    cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-    fill, payload, percent, value,
-  } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? 'start' : 'end';
+    var text = chart.config.data.text,
+      textX = Math.round((width - ctx.measureText(text).width) / 2),
+      textY = height / 2;
 
-  return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
-      </text>
-    </g>
-  );
+    ctx.fillText(text, textX, textY);
+  }
+});
+
+const chartData = (props) => {
+  var completedTodosLength = props.completedTodos.length;
+  var overdueTodosLength = props.overdueTodos.length;
+  var uncompletedTodosLength = props.uncompletedTodos.length;
+  var percentcompeltedTodos = Math.round((completedTodosLength / (completedTodosLength + overdueTodosLength + uncompletedTodosLength)) * 100);
+
+  return {
+    labels: ['Completed', 'Overdue', 'Uncompleted'],
+    text: percentcompeltedTodos + "%",
+    datasets: [
+      {
+        fill: false,
+        pointRadius: 1,
+        data: [completedTodosLength, overdueTodosLength, uncompletedTodosLength],
+        backgroundColor: [
+          '#6fbbd3',
+          '#b33e5c',
+          'rgba(211, 211, 211)'
+        ],
+      }
+    ],
+  };
 };
 
+const options = {
+  maintainAspectRatio: false,
+  responsive: false,
+};
 
-export default class MainComponent extends PureComponent {
-
-  state = {
-    activeIndex: 0,
-  };
-
-  onPieEnter = (data, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
+export default class Example extends React.Component {
 
   render() {
     return (
       <div>
         <span style={{fontWeight: "bold", "fontSize": 25}}>Progress Chart</span>
-        <div style={{width: 400, height: 250}}>
-          <ResponsiveContainer>
-            <PieChart>
-              <Pie
-                activeIndex={this.state.activeIndex}
-                activeShape={renderActiveShape}
-                data={data}
-                // cx={200}
-                // cy={200}
-                cx="50%"  //要素の左を基準に全体の50%移動
-                cy="50%"  //要素の上を基準に全体の50%移動
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                onMouseEnter={this.onPieEnter}
-              />
-            </PieChart>
-          </ResponsiveContainer>
+        <div style={{marginLeft: 80, marginBottom: 20}}>
+          <Doughnut
+            data={chartData(this.props)}
+            options={options}
+            width={240}
+            height={240}
+          />
         </div>
       </div>
     );
   }
 }
+
+

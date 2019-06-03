@@ -14,8 +14,8 @@ import {
 const mapStateToProps = (state) => {
   return {
     uncompletedTodos: state.todoReducers.today_todos.filter(todo => todo.completed === false && new Date() < new Date(todo.formatted_due_day)).sort(((a, b) => {
-      if (new Date(a.formatted_due_day) < new Date(b.formatted_due_day)) return -1;
-      if (new Date(a.formatted_due_day) > new Date(b.formatted_due_day)) return 1;
+      if (new Date(a.formatted_due_day) <= new Date(b.formatted_due_day)) return -1;
+      if (new Date(a.formatted_due_day) >= new Date(b.formatted_due_day)) return 1;
       return 0;
     }))
   };

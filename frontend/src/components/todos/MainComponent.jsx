@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Header } from '../Header/MainComponent';
 import { Sidebar } from '../Sidebar/MainComponent';
-// import { OtherTodoCardsComponent } from './OtherTodoCardsComponent';
 import TodayContainer from '../../containers/Todos/TodayContainer';
 import CompletedTasksContainer from '../../containers/Todos/CompletedTasksContainer';
 import ProgressChartContainer from '../../containers/Todos/ProgressChartContainer';
@@ -31,8 +30,6 @@ export class MainComponent extends React.Component {
   }
 
   render() {
-    // const todos = this.props.completedTodos;
-    // const tomorrowDate = createOrdinalDate(1);
     return (
       <div className="clearfix" style={Styles.Block}>
         <Header />
@@ -42,18 +39,6 @@ export class MainComponent extends React.Component {
           <div style={Styles.Others}>
             <ProgressChartContainer />
             <CompletedTasksContainer />
-            {/* 
-              <div>
-                <p style={Styles.HeaderTitle}>Tomorrow</p>
-                <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
-              </div>
-              <OtherTodoCardsComponent todos={todos} />
-              <div>
-                <p style={Styles.HeaderTitle}>Day after Tomorrow</p>
-                <p style={Styles.HeaderSubtitle}>{tomorrowDate}</p>
-              </div>
-              <OtherTodoCardsComponent todos={todos} />
-            */}
           </div>
         </div>
       </div>
