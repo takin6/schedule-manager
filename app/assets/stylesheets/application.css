@@ -65,3 +65,13 @@ input[type=checkbox] {
   display: none;
 }
 
+button.create-todos {
+  min-width: 40px;
+  min-height: 35px;
+}
+
+button.create-todos .material-icons {
+  font-size: 35px;
+  color: indigo;
+}
+

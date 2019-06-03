@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TodoCardsComponent } from './TodoCardsComponent';
-import CreateFormComponent from '../forms/CreateFormComponent';
+import CreateTodayTodoFormComponent from './Forms/CreateFormComponent';
+import CreateFormComponent from '../Forms/CreateFormComponent';
 import * as Styles from '../TodoStyles';
 import * as DateUtil from '../../../util/DateUtil';
 import OverdueTasksContainer from '../../../containers/Todos/OverdueTasksContainer';
@@ -34,11 +35,12 @@ export class MainComponent extends React.Component {
       <div style={Styles.Today}>
         <div style={{display: "flex"}}>
           <div>
-            <p style={Styles.HeaderTitle}>Today</p>
-            <p style={Styles.HeaderSubtitle}>{date}</p>
+            <span style={Styles.HeaderTitle}>Today</span>
+            <span style={Styles.HeaderSubtitle}>{date}</span>
+            <CreateFormComponent />
           </div>
         </div>
-        <CreateFormComponent
+        <CreateTodayTodoFormComponent
           onSubmit={this.submitData}
         />
         <OverdueTasksContainer />

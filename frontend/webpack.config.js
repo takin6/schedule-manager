@@ -32,6 +32,10 @@ function createModule() {
         exclude: /node_modules/,
       },
       {
+        test: /\.css$/,
+        loader:[ 'style-loader', 'css-loader' ]
+      },
+      {
         test: /\.(png|woff|woff2|eot|ttf|svg|gif|jpg)$/,
         use: {
           loader: 'url-loader',
