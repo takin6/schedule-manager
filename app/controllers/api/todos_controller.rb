@@ -17,7 +17,7 @@ module Api
     def create
       params = create_params
 
-      formatted_time = Time.parse(params[:due_day])
+      formatted_time = Time.zone.parse(params[:due_day])
 
       if @todo = Todo.create!(title: params[:title], due_day: formatted_time)
         render 'show', formats: 'json'
@@ -34,7 +34,7 @@ module Api
       end
 
       if params[:due_day]
-        formatted_time = Time.parse(params[:due_day])
+        formatted_time = Time.zone.parse(params[:due_day])
         @todo.due_day = formatted_time
       end
 

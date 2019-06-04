@@ -6,6 +6,10 @@ class Todo < ApplicationRecord
     self.due_day&.strftime('%Y-%m-%d %H:%M')
   end
 
+  def formatted_due_date
+    self.due_day&.strftime('%m-%d')
+  end
+
   def formatted_due_time
     self.due_day&.strftime('%H:%M')
   end
@@ -15,13 +19,13 @@ class Todo < ApplicationRecord
   end  
 
   def self.overdue_todos(todos)
-    return todos.select { |todo| DateTime.current > todo.due_day }
+    return todos.select { |todo| (Time.zone.now > todo.due_day) && (todo.completed == false)}
   end
   
   def self.tomorrow_todos(todos)
     return todos.select { |todo| todo.due_day.strftime('%Y-%m-%d') == DateTime.tomorrow.strftime('%Y-%m-%d') }
   end
-  
+
   def self.due_undefined_todos(todos)
     return todos.select { |todo| !todo.due_day.present? }
   end

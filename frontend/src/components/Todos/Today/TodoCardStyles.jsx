@@ -1,5 +1,7 @@
 export const TodoCardsBlock = {
-  marginTop: 20
+  marginTop: 20,
+  display: "table",
+  padding: 0
 };
 
 export const LeftCard = {
@@ -10,7 +12,7 @@ export const LeftCard = {
   marginRight: 20,
   float: "left",
   borderRadius: "3%",
-  cursor: "pointer"
+  // cursor: "pointer",
 };
 
 export const RightCard = {
@@ -21,7 +23,7 @@ export const RightCard = {
   marginLeft: 30,
   float: "left",
   borderRadius: "3%",
-  cursor: "pointer"
+  // cursor: "pointer",
 };
 
 export const CardContents = {

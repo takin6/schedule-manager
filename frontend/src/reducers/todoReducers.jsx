@@ -95,6 +95,22 @@ export function todoReducers(state = INITIAL_STATE, action) {
         todos: updateTodoList(state, editItemIndex, updatedItem),
         today_todos: updateTodayTodoList(state, editTodayItemIndex, updatedTodayItem),
       };
+    case types.DONE_RESCHEDULE_TODO:
+      editItemIndex = findItemIndex(state.todos, action.payload.id);
+      updatedItem = { ...state.todos[editItemIndex], title: action.payload.title, completed: action.payload.completed, editing: false };
+      editTodayItemIndex = findItemIndex(state.today_todos, action.payload.id);
+      
+      var month = new Date().getMonth()+1 < 10 ? "0" + `${new Date().getMonth()+1}` : `${new Date().getMonth()+1}`;
+      var date = new Date().getDate() < 10 ? "0" + `${new Date().getDate()}` : `${new Date().getDate()}`;
+      updatedTodayItem = action.payload.formatted_due_date === month + "-" + date
+        ? { ...state.today_todos[editTodayItemIndex], due_day: action.payload.due_day, formatted_due_day: action.payload.formatted_due_day, formatted_time: action.payload.formatted_due_time,  editing: false}
+        : null;
+      return {
+        ...state,
+        todos: updateTodoList(state, editItemIndex, updatedItem),
+        overdue_todos: state.overdue_todos.filter(todo => todo.id !== action.payload.id),
+        today_todos: updatedTodayItem ? updateTodayTodoList(state, editTodayItemIndex, updatedTodayItem) : state.today_todos.filter(todo => todo.id !== action.payload.id)
+      };
     case types.DELETED_TODO:
       return {
         ...state,
@@ -107,10 +123,3 @@ export function todoReducers(state = INITIAL_STATE, action) {
       return state;
   }
 }
-
-// case types.ADD_TODO_FAILURE:
-//   return {
-//     ...state,
-//     loading: false,
-//     error: action.payload.error
-//   };

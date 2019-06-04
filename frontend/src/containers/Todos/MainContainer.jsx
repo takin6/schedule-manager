@@ -8,6 +8,7 @@ import {
   doneEditTodoTitle,
   deleteTodo,
   handleAddingMode,
+  rescheduleTodo
 } from '../../actions/Todos';
 
 const mapStateToProps = (state) => {
@@ -22,7 +23,8 @@ const mapDispatchToProps = {
   editTodoTitle: editTodoTitle,
   cancelEditTodoTitle: cancelEditTodoTitle,
   doneEditTodoTitle: doneEditTodoTitle,
-  deleteTodo: deleteTodo
+  deleteTodo: deleteTodo,
+  rescheduleTodo: rescheduleTodo
 };
 
 
