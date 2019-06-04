@@ -75,3 +75,7 @@ button.create-todos .material-icons {
   color: indigo;
 }
 
+.modal-dialog.create-todo-form {
+  min-width: 770px;
+}
+

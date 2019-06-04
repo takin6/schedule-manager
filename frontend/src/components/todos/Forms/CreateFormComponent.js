@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { IconButton } from 'react-mdl';
+import FormComponent from './FormComponent';
 
 export default class CreateFormComponent extends React.Component {
   constructor(props) {
@@ -27,11 +28,14 @@ export default class CreateFormComponent extends React.Component {
       <>
         <IconButton className="create-todos" name="add_circle" onClick={this.handleShow} style={{marginLeft: "15em"}} />
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
+        <Modal dialogClassName='create-todo-form' show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body>{ "Woohoo, you're reading this text in a modal!" }</Modal.Body>
+          <Modal.Body>
+            <FormComponent />
+            { "Woohoo, you're reading this text in a modal!" }
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
