@@ -10241,11 +10241,6 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
   .mdl-textfield__expandable-holder .mdl-textfield__label:after {
     bottom: 0; }
 
-/* overrider not working*/
-.add-todo-text.mdl-textfield.mdl-js-textfield.is-upgraded.is-focused.mdl-textfield__label {
-  bottom: 10px;
-}
-
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *

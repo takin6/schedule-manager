@@ -2,6 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import TitleField from './TitleField';
 import NoteField from './NoteField';
+import { SingleDatePicker } from 'react-dates';
+import moment from 'moment';
 // import { TextField } from 'react-mdl';
 
 
@@ -10,6 +12,15 @@ const renderTextField = props => {
     <TitleField {...props.input} />
   );
 };
+
+const renderDateField = ({ input, meta }) => (
+  <SingleDatePicker
+    date={input.value}
+    focused={meta.active}
+    onDateChange={(value) => input.onChange({ value })}
+    onFocusChange={({ focused }) => focused ? input.onFocus(true) : input.onBlur(true)}
+  />
+);
 
 const renderNoteField = props => {
   return (
@@ -21,27 +32,30 @@ const FormComponent = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div style={{display: "inline-block"}}>
-        <div>
-          <span style={{fontSize: 15, fontWeight: "bolder"}}>Title</span>
-        </div>
-        <div className="add-todo-text">
-          <Field
-            name="todoTitle"
-            component={renderTextField}
-          />
-        </div>
+      <div style={{display: "inline-block", verticalAlign: "top"}}>
+        <span style={{fontSize: 15, fontWeight: "bolder"}}>Title</span>
+        <Field
+          name="todoTitle"
+          component={renderTextField}
+        />
+      </div>
+      <div style={{display: "inline-block", verticalAlign: "top"}}>
+        <span style={{fontSize: 15, fontWeight: "bolder"}}>Due Date</span>
+        <Field
+          name="todoDueDate"
+          component={renderDateField}
+          format={(value) => value ? moment(value) : undefined}
+          normalize={(data) => data && data.value && data.value.format()}
+        />
       </div>
       <div>
-        <div>
+        <div style={{display: "inline-block", verticalAlign: "top"}}>
           <span style={{fontSize: 15, fontWeight: "bolder"}}>Note</span>
         </div>
-        <div>
-          <Field
-            name="todoNote"
-            component={renderNoteField}
-          />
-        </div>
+        <Field
+          name="todoNote"
+          component={renderNoteField}
+        />
       </div>
       <div>
         <button type="submit" disabled={pristine || submitting}>
@@ -61,6 +75,16 @@ export default reduxForm({
 
 
 
+
+// <div>
+//   <span style={{fontSize: 15, fontWeight: "bolder"}}>Title</span>
+// </div>
+// <div className="add-todo-text">
+//   <Field
+//     name="todoTitle"
+//     component={renderTextField}
+//   />
+// </div>
 // <div>
 //   <label>Title</label>
 //   <div>

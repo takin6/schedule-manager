@@ -5,6 +5,7 @@ import { configureStore } from "../store/configureStore";
 import { initTodos } from '../actions/Todos';
 const TodoComponent = require('./Todos/TodoComponent').TodoComponent;
 const store = configureStore();
+import 'react-dates/initialize';
 
 const propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({})),
