@@ -9,7 +9,8 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    overdueTodos: state.todoReducers.today_todos.filter(todo => todo.completed === false && new Date() > new Date(todo.formatted_due_day)),
+    overdueTodos: state.todoReducers.overdue_todos
+    // overdueTodos: state.todoReducers.today_todos.filter(todo => todo.completed === false && new Date() > new Date(todo.formatted_due_day)),
   };
 };
 

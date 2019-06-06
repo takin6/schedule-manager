@@ -65,3 +65,44 @@ input[type=checkbox] {
   display: none;
 }
 
+button.create-todos {
+  min-width: 40px;
+  min-height: 35px;
+}
+
+button.create-todos .material-icons {
+  font-size: 35px;
+  color: indigo;
+}
+
+.modal-dialog.create-todo-form {
+  min-width: 770px;
+}
+
+.add-todo-form-field {
+  border:0;
+  padding:10px;
+  font-size:1.3em;
+  /*font-family:Arialgi, sans-serif;
+  color:#aaa;*/
+  border:solid 1px #ccc;
+  margin:0 0 20px 50px;
+  width:500px;
+  /* border */
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  /* シャドウを上部だけに適用*/
+  -moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+input.add-todo-form-title:focus {
+  border:solid 1px #EEA34A;
+}
+
+body > div.fade.modal.show > div.modal-dialog.create-todo-form > div > div.modal-body {
+  margin: 0 auto;
+  margin-top: 20px;
+}

@@ -48,7 +48,7 @@ export const HeaderSubtitle = {
   display: "inline",
   color: "#C1C2D3",
   marginLeft: 15,
-  fontSize: 10
+  fontSize: 15
 };
 
 // export const ModalContent = {
