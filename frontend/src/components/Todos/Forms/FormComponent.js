@@ -2,7 +2,9 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import TitleField from './TitleField';
 import NoteField from './NoteField';
+// import "react-dates/initialize";
 import { SingleDatePicker } from 'react-dates';
+// import "react-dates/lib/css/_datepicker.css";
 import moment from 'moment';
 // import { TextField } from 'react-mdl';
 

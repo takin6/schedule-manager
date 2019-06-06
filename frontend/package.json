@@ -48,6 +48,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "classnames": "^2.2.6",
+    "deepmerge": "^1.5.2",
     "formik": "^1.5.2",
     "humps": "^2.0.1",
     "hypernova": "^2.5.0",
